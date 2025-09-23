@@ -1,0 +1,16 @@
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+
+# Arquivos de resultado
+/parte1_paralelismo/imagens_saida/*
+/parte1_paralelismo/logs/*
+
+# Arquivos de IDE
+.vscode/
+.idea/
