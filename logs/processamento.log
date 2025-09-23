@@ -1,0 +1,8 @@
+2025-09-23 14:53:58,157 - MainThread - Iniciando processamento da imagem: imagens_entrada/detetive_pikachu.png
+2025-09-23 14:53:58,171 - MainThread - Imagem carregada com sucesso. Tamanho: (223, 295)
+2025-09-23 14:53:58,187 - MainThread - Imagem processada e salva em: imagens_entrada/detetive_pikachu_blur.png
+2025-09-23 14:53:58,187 - MainThread - Tempo de execução: 0.03 segundos
+2025-09-23 14:53:58,187 - MainThread - Iniciando processamento da imagem: imagens_entrada/corra.png
+2025-09-23 14:53:58,188 - MainThread - Imagem carregada com sucesso. Tamanho: (736, 736)
+2025-09-23 14:53:58,261 - MainThread - Imagem processada e salva em: imagens_entrada/corra_blur.png
+2025-09-23 14:53:58,261 - MainThread - Tempo de execução: 0.07 segundos

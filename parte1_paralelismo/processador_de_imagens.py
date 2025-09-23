@@ -3,11 +3,14 @@
 
 import threading
 import time
-from PIL import image, ImageFilter #Pillow para edição
+from PIL import Image, ImageFilter #Pillow para edição
 import logging # Registro mais sofisticado e prático
+import os
 
+os.makedirs("logs", exist_ok=True)
 
 # ------    Configuração do Log     ------
+
 logging.basicConfig(level=logging.INFO, #Apenas mensagens informativas
                     format='%(asctime)s - %(threadName)s - %(message)s',
                     handlers=[
@@ -18,18 +21,24 @@ logging.basicConfig(level=logging.INFO, #Apenas mensagens informativas
 
 
 # Função Principal
-def aplicar_filtro():
+
+def aplicar_filtro(entrada, saida):
     """
     Função que será responsável por carregar uma imagem, aplicar um filtro e salvar
     """
-    pass
+    
+    img = Image.open (entrada)
 
+    img_filtrada = img.filter(ImageFilter.EDGE_ENHANCE)
 
+    img_filtrada.save(saida)
+
+    print(f"Filtro aplicado: {entrada} -> {saida}")
 
 # Execução Principal
 
 if __name__ == "__main__":
-    pass
+     
+    aplicar_filtro("imagens_entrada/detetive_pikachu.png", "imagens_saida/detetive_pikachu_enhance.png")
 
-
-# Miguel Melo - 23/09
+    aplicar_filtro("imagens_entrada/corra.png", "imagens_saida/corra_enhance.png")
