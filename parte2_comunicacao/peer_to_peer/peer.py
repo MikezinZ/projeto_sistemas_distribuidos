@@ -1,5 +1,3 @@
-# peer.py
-
 import socket
 import threading
 import sys
@@ -9,9 +7,7 @@ class Peer:
         self.host = host
         self.port = port
         self.socket = socket.socket(socket.AF_INET, socket.SOCK_STREAM)
-
         self.peers = []
-
         self.lock = threading.Lock()
 
     def start_server(self):
@@ -20,18 +16,14 @@ class Peer:
         print(f"Peer escutando em {self.host}:{self.port}")
 
         while True:
-
             conn, addr = self.socket.accept()
             print(f"Nova conexão recebida de {addr}")
-            
-
             self.add_peer(conn)
             
-
             thread = threading.Thread(target=self.handle_peer, args=(conn, addr))
             thread.start()
 
-    def handle_peer(self, conn, addr): 
+    def handle_peer(self, conn, addr):
         try:
             conn.sendall(f"Oi! Do nó: {self.port}!".encode('utf-8'))
         except socket.error:
@@ -43,7 +35,7 @@ class Peer:
             try:
                 data = conn.recv(1024)
                 if not data:
-                    break  
+                    break 
                 
                 mensagem_recebida = data.decode('utf-8')
                 print(f"\n[Mensagem de {addr}]: {mensagem_recebida}\n> ", end="")
@@ -82,8 +74,8 @@ class Peer:
                 try:
                     peer_conn.sendall(full_message.encode('utf-8'))
                 except socket.error:
-                    print(f"Não foi possível enviar mensagem para um peer. Removendo.")
-                    self.remove_peer(peer_conn, lock_needed=False)
+                    print(f"[!] Não foi possível enviar mensagem para um peer. Removendo...")
+                    self.remove_peer(peer_conn, lock_needed=False) # O lock já foi adquirido
 
     def add_peer(self, peer_conn):
     
@@ -104,12 +96,14 @@ class Peer:
             self.lock.release()
 
     def start(self):
+        """Inicia o peer: a thread do servidor e o loop de entrada do usuário."""   
         server_thread = threading.Thread(target=self.start_server)
-        server_thread.daemon = True
+        server_thread.daemon = True 
         server_thread.start()
 
         print("Bem-vindo ao chat do zap! Digite 'connect <host> <port>' para se conectar a outro contato.")
         
+       
         while True:
             try:
                 user_input = input("> ")
@@ -118,8 +112,8 @@ class Peer:
                     if len(parts) == 3:
                         self.connect_to_peer(parts[1], parts[2])
                     else:
-                        print("Uso: connect <host> <port>")
-                elif user_input: # Se não for vazio
+                        print("[!] Uso: connect <host> <port>")
+                elif user_input: 
                     self.send_to_peers(user_input)
             except KeyboardInterrupt:
                 print("\nSaindo...")
