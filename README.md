@@ -12,7 +12,8 @@ Repositório correspondente ao documento **[Miniprojeto1].docx**, com código e 
 
 Este projeto foi dividido em 3 partes, cada uma focando em um conjunto de tecnologias e conceitos:
 
-* **Parte 1:** Paralelismo com Threads para processamento de imagens.
+* **Parte 1:** 
+    * Paralelismo com Threads para processamento de imagens.
 * **Parte 2:**
     * Comunicação via Sockets (TCP).
     * Arquitetura Cliente-Servidor Multi-thread.
